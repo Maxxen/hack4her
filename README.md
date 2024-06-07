@@ -1,3 +1,20 @@
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+- [General Tips](#general-tips)
+- [Datasets](#datasets)
+  - [Amsterdam Pedestrian Road Network](#amsterdam-pedestrian-road-network)
+    - [Road Network Nodes](#road-network-nodes)
+    - [Road Network Edges](#road-network-edges)
+  - [Amsterdam Public Light Locations](#amsterdam-public-light-locations)
+  - [Amsterdam Wijken (Districts)](#amsterdam-wijken-districts)
+    - [Including Water](#including-water)
+    - [Excluding Water](#excluding-water)
+  - [Amsterdam Buurten (Neighborhoods)](#amsterdam-buurten-neighborhoods)
+    - [Including Water](#including-water-1)
+    - [Excluding Water](#excluding-water-1)
+  - [Amsterdam A10 Ring Polygon](#amsterdam-a10-ring-polygon)
+  - [Amsterdam Safety Statistics](#amsterdam-safety-statistics)
+
 
 # General Tips
 
