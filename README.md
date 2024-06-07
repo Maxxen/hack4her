@@ -1,5 +1,6 @@
 # Table of Contents
 - [Table of Contents](#table-of-contents)
+- [Useful links](#useful-links)
 - [General Tips](#general-tips)
 - [Datasets](#datasets)
   - [Amsterdam Pedestrian Road Network](#amsterdam-pedestrian-road-network)
@@ -14,7 +15,16 @@
     - [Excluding Water](#excluding-water-1)
   - [Amsterdam A10 Ring Polygon](#amsterdam-a10-ring-polygon)
   - [Amsterdam Safety Statistics](#amsterdam-safety-statistics)
+  - [Overture Maps Data](#overture-maps-data)
 
+
+# Useful links
+
+- [DuckDB Documentation](https://duckdb.org/docs/)
+- [DuckDB Spatial Extension Documentation](https://duckdb.org/docs/sql/extensions/spatial)
+- [DuckDB Spatial Full Function Reference](https://github.com/duckdb/duckdb_spatial/blob/main/docs/functions.md)
+- [Dr. Qiusheng Wu's Geospatial Data Science with DuckDB + Python (GEOG-414)](https://geog-414.gishub.org/book/duckdb/01_duckdb_intro.html). This is a great in-depth resource for learning how to use DuckDB for both spatial and non-spatial SQL.
+- [Accessing Overture Maps Data with DuckDB](https://docs.overturemaps.org/getting-data/duckdb/)
 
 # General Tips
 
@@ -187,3 +197,31 @@ Interestingly enough there is not one single district that is the "safest" in al
 
 Suggestions:
   - If you want to join these with the Amsterdam Wijken polygons it might be easier to use the "code" (e.g. "AE", "AD") used to identify the wijken instead of the name in case there different casing/spelling.
+
+
+## Overture Maps Data
+
+Accessing overture maps data is slightly more complicated but it turns out that DuckDB still is one of the easiest ways to do it. 
+You can find more information on how to access the data with DuckDB [here](https://docs.overturemaps.org/getting-data/duckdb/).
+
+[Here is the list of the datasets available](https://docs.overturemaps.org/schema/reference/) in the overture maps dataset
+
+Here might be a quick example of how to access just some road segment data roughly covering the amsterdam area
+
+```sql
+-- Scan amsterdam road segments from the overture maps dataset
+CREATE OR REPLACE TABLE roads AS
+    SELECT
+        class,
+        names.primary AS name,
+        JSON_EXTRACT_STRING(road, '$.class') AS class,
+        ST_GeomFromWKB(geometry) as geometry,
+        id,
+        connector_ids
+    FROM read_parquet('s3://overturemaps-us-west-2/release/2024-05-16-beta.0/theme=transportation/type=segment/*')
+    WHERE
+        subtype = 'road'
+        AND JSON_EXTRACT_STRING(road, '$.')
+        AND bbox.xmin > 4.727554 AND bbox.xmax < 5.023499
+        AND bbox.ymin > 52.276981 AND bbox.ymax < 52.441362;
+```
