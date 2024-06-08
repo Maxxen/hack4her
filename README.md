@@ -27,6 +27,15 @@
 - [Accessing Overture Maps Data with DuckDB](https://docs.overturemaps.org/getting-data/duckdb/)
 - [Using DuckDB With DBeaver](https://duckdb.org/docs/guides/sql_editors/dbeaver.html)
 
+# Notebooks
+
+If you want to run the notebooks in the `/notebooks` directory yourself you may need some additional pip depencencies. Hopefully it should be enough to run:
+
+```
+pip install ipykernel duckdb jupysql filelock duckdb-engine matplotlib
+```
+
+
 # General Tips
 
 - __Routing__ DuckDB cannot help you with routing if you wish to perform shortest-path calculations. You can use DuckDB to enrich and/or create a dataset for your road network but you most likely need a graph library for the path calculations. I would recommend the `networkx` library if you are using Python. Alternatively you can maybe avoid routing and instead focus on other aspects of the project by e.g. letting users supply their own routes.
