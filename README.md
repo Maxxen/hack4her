@@ -25,6 +25,7 @@
 - [DuckDB Spatial Full Function Reference](https://github.com/duckdb/duckdb_spatial/blob/main/docs/functions.md)
 - [Dr. Qiusheng Wu's Geospatial Data Science with DuckDB + Python (GEOG-414)](https://geog-414.gishub.org/book/duckdb/01_duckdb_intro.html). This is a great in-depth resource for learning how to use DuckDB for both spatial and non-spatial SQL.
 - [Accessing Overture Maps Data with DuckDB](https://docs.overturemaps.org/getting-data/duckdb/)
+- [Using DuckDB With DBeaver](https://duckdb.org/docs/guides/sql_editors/dbeaver.html)
 
 # General Tips
 
